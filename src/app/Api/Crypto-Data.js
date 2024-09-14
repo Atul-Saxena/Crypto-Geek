@@ -34,7 +34,7 @@ export const ChartData = async (id) => {
   const response = await axios
     .request(options1)
     .then(function (response) {
-      return response.data;
+      // return response.data;
       // console.log(response.data);
     })
     .catch(function (error) {
@@ -54,6 +54,7 @@ export const CoinData = async (id) => {
   const response = await axios
     .request(options)
     .then(function (response) {
+      // return response.data;
       // console.log(response.data);
     })
     .catch(function (error) {
