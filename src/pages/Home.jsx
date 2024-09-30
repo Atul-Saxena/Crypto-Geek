@@ -1,7 +1,7 @@
 import React from 'react'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
-import Banner from '../components/Banner'
+import Banner from '../components/Home/Banner'
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)

@@ -31,7 +31,7 @@ const CoinTextData = () => {
                 console.error(error);
             });
 
-    }, [coinId])
+    }, [])
 
     return (
         <div className=" items-center justify-center md:flex-row md:items-start md:justify-between md:space-x-6 md:space-y-0 space-y-6 md:p-6 p-4 shadow-lg">

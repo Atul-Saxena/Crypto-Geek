@@ -1,15 +1,13 @@
 import React from 'react'
-import { Info, X } from 'lucide-react'
-// import { SendEmailVerification } from '../app/firebase/auth'
-import { SendVerification } from '../app/store/Slices/FirebaseSlice'
-import { useDispatch } from 'react-redux'
+import { Info } from 'lucide-react'
+import { useFirebase } from '../app/Firebase/FirebaseContext'
 import { Link } from 'react-router-dom'
 
 const emailverify = () => {
-  const dispatch = useDispatch()
+  const firebase = useFirebase();
   console.log("emailverify")
   const verify = ()=>{
-    dispatch(SendVerification());
+    firebase.Verification()
   }
   return (
     <div className="rounded-md border-l-4 border-black bg-gray-100 p-4 mt-10">

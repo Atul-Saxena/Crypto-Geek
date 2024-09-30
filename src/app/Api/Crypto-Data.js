@@ -42,24 +42,3 @@ export const ChartData = async (id) => {
     });
     return response;
 }
-
-
-export const CoinData = async (id) => {
-  const options = {
-    method: 'GET',
-    url: `https://api.coingecko.com/api/v3/coins/${id}?localization=true&tickers=true&market_data=true&community_data=true&developer_data=true&sparkline=true`,
-    headers: { accept: 'application/json', 'x-cg-demo-api-key': import.meta.env.VITE_DataApiKey }
-  };
-
-  const response = await axios
-    .request(options)
-    .then(function (response) {
-      // return response.data;
-      // console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-    return response;
-    
-}

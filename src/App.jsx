@@ -5,29 +5,32 @@ import SignUp from './pages/SignUp'
 import Home from './pages/Home'
 import About from './pages/About'
 import Market from './pages/market'
-import Wallet from './pages/wallet'
 import HelpSupport from './pages/HelpSupport'
 import EmailVerify from './pages/emailverify'
 import CoinInfo from './pages/CoinInfo'
 import { BrowserRouter as Routers, Routes, Route } from 'react-router-dom'
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from './app/store/firebase'
+import { FirebaseAuth } from './app/Firebase/FirebaseContext'
 
 function App() {
   const [users, setUser] = useState(null)
+  const [verify, setverify] = useState(false)
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(FirebaseAuth, (user) => {
       if(user){
         setUser(user);
-        console.log("signed in");
+        if(user.emailVerified){
+          setverify(true)
+        }
       } else{
         setUser(null);
         console.log("not signed");
       }
     })
-  
+    
   }, []);
+
 
   if(users===null){
     return (
@@ -35,12 +38,13 @@ function App() {
         <Routes>
           <Route path='/' element={<SignIn />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='*' element={<SignIn />} />
         </Routes>
       </Routers>
     )
   }
   else{
-    const verify = users.emailVerified
+    
     return (
       <Routers>
         <Routes>
@@ -48,8 +52,8 @@ function App() {
           <Route path='/about' element={verify?<About/>:<EmailVerify/>} />
           <Route path='/market' element={verify?<Market/>:<EmailVerify/>} />
           <Route path='/market/:coinId' element={verify?<CoinInfo/>:<EmailVerify/>} />
-          <Route path='/wallet' element={verify?<Wallet/>:<EmailVerify/>} />
           <Route path='/help&Support' element={verify?<HelpSupport/>:<EmailVerify/>} />
+          <Route path='*' element={verify?<Home/>:<EmailVerify/>} />
         </Routes>
       </Routers>
     )

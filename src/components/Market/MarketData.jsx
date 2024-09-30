@@ -1,5 +1,5 @@
 import React, {useState}from 'react'
-import { Response } from '../app/Api/Crypto-Data'
+import { Response } from '../../app/Api/Crypto-Data'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import { Link } from 'react-router-dom'
 
@@ -27,18 +27,17 @@ const MarketData = () => {
                         <div className="relative w-full mt-4">
                             <input
                                 type="text"
-                                placeholder="Search your crypto"
+                                placeholder={"Search Crypto"}
                                 className="w-70 bg-white hover:bg-gray-300 outline-none text-black font-bold py-2 px-4 rounded-2xl pl-10"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
-                            <div className="absolute inset-y-0 left-0 flex items-center px-4">
+                            {/* <div className="absolute inset-y-0 left-0 flex items-center px-4">
                                 <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
-                            </div>
-                        </div>
-                    </header>
+                            </div> */}
+                        </div>                    </header>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredCoins.map((coin) => (
                             <div className="flex flex-col m-10 justify-center items-center bg-gray-800 rounded-lg shadow-lg p-4">

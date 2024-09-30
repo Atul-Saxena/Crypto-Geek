@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import MarketData from '../components/MarketData'
+import MarketData from '../components/Market/MarketData'
 import Footer from '../components/Footer'
 
 const market = () => {

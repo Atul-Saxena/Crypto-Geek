@@ -2,37 +2,35 @@ import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-// import { signUpWithEmailPassword } from '../app/firebase/auth'
-import { SignUp, SendVerification, googleSignin } from '../app/store/Slices/FirebaseSlice'
+import { useFirebase } from '../app/Firebase/FirebaseContext'
 import { useDispatch } from 'react-redux'
 
 export default function SignUpComponent() {
   const [email, setEmail] = useState('');
   const [password, setPasswordl] = useState('');
   const [conpassword, setconpassword] = useState('');
-  const dispatch = useDispatch()
-  // const { loading, error } = useSelector((state) => state.auth);
 
-  const  submit = async()=>{
-    const email_val= email;
-    const password_val= password;
-    const conpassword_val= conpassword;
-    if(password_val.length>=6){
-      if(password_val!=conpassword_val){
+  const firebase = useFirebase();
+
+  const submit = async () => {
+    const email_val = email;
+    const password_val = password;
+    const conpassword_val = conpassword;
+    if (password_val.length >= 6) {
+      if (password_val != conpassword_val) {
         alert('password must be same in both field')
       }
-      else{
-        dispatch(SignUp(email_val, password_val));
-        dispatch(SendVerification(email_val, password_val));
+      else {
+        firebase.CreateUserWithEmailAndPassword(email_val, password_val)
       }
-    }else{
+    } else {
       alert('length of the password must be atleast 6 ')
     }
   }
 
   const googleSignIn = () => {
-    dispatch(googleSignin());
-}
+    firebase.signinWithGoogle();
+  }
 
   return (
     <section>
@@ -94,7 +92,7 @@ export default function SignUpComponent() {
                     placeholder="Email"
                     id="email"
                     value={email}
-                    onChange={e=>setEmail(e.target.value)}
+                    onChange={e => setEmail(e.target.value)}
                   ></input>
                 </div>
               </div>
@@ -112,7 +110,7 @@ export default function SignUpComponent() {
                     placeholder="Password"
                     id="password"
                     value={password}
-                    onChange={e=>setPasswordl(e.target.value)}
+                    onChange={e => setPasswordl(e.target.value)}
                   ></input>
                 </div>
               </div>
@@ -130,39 +128,43 @@ export default function SignUpComponent() {
                     placeholder="Confirm Password"
                     id="conpassword"
                     value={conpassword}
-                    onChange={e=>setconpassword(e.target.value)}
+                    onChange={e => setconpassword(e.target.value)}
                   ></input>
                 </div>
               </div>
               <div>
-                <button
-                  type="button"
-                  className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
-                  onClick={submit}
-                >
-                  Create Account <ArrowRight className="ml-2" size={16} />
-                </button>
+                <Link to={'/'}>
+                  <button
+                    type="button"
+                    className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
+                    onClick={submit}
+                  >
+                    Create Account <ArrowRight className="ml-2" size={16} />
+                  </button>
+                </Link>
               </div>
             </div>
           </form>
           <div className="mt-3 space-y-3">
-            <button
-              type="button"
-              className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
-              onClick={googleSignIn}
-            >
-              <span className="mr-2 inline-block">
-                <svg
-                  className="h-6 w-6 text-rose-500"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
-                </svg>
-              </span>
-              Sign up with Google
-            </button>
+            <Link to={'/'}>
+              <button
+                type="button"
+                className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
+                onClick={googleSignIn}
+              >
+                <span className="mr-2 inline-block">
+                  <svg
+                    className="h-6 w-6 text-rose-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M20.283 10.356h-8.327v3.451h4.792c-.446 2.193-2.313 3.453-4.792 3.453a5.27 5.27 0 0 1-5.279-5.28 5.27 5.27 0 0 1 5.279-5.279c1.259 0 2.397.447 3.29 1.178l2.6-2.599c-1.584-1.381-3.615-2.233-5.89-2.233a8.908 8.908 0 0 0-8.934 8.934 8.907 8.907 0 0 0 8.934 8.934c4.467 0 8.529-3.249 8.529-8.934 0-.528-.081-1.097-.202-1.625z"></path>
+                  </svg>
+                </span>
+                Sign up with Google
+              </button>
+            </Link>
           </div>
         </div>
       </div>
