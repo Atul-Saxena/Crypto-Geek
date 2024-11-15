@@ -90,7 +90,7 @@ const Navbar = () => {
                             className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         >
                             <span class="relative inline-block mr-2">
-                                <img src={UserPhoto} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
+                                <img src={UserPhoto || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
 
                                 <span className="absolute animate-pulse top-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
                             </span>
@@ -146,7 +146,7 @@ const Navbar = () => {
                             className="flex items-center px-4 py-2 text-sm font-medium outline-none"
                         >
 
-                                <img src={UserPhoto} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
+                                <img src={UserPhoto || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
 
                         </button>
 
