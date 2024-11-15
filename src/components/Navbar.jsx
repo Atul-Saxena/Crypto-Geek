@@ -1,8 +1,5 @@
 import React from 'react'
-// import { SignOut } from '../app/firebase/auth'
 import { useFirebase } from '../app/Firebase/FirebaseContext'
-// import { useDispatch } from 'react-redux'
-// import { logout } from '../app/store/Slices/FirebaseSlice'
 import { Menu, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
@@ -18,6 +15,10 @@ const menuItems = [
     {
         name: 'Market',
         href: '/market',
+    },
+    {
+        name: 'Start Learning',
+        href: '/learn-crypto',
     },
     {
         name: 'Help & Support',

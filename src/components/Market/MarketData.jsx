@@ -17,11 +17,10 @@ const MarketData = () => {
             <section>
                 <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
                     <header className="text-center text-white">
-                        <h2 className="text-xl font-bold sm:text-3xl">Product Collection</h2>
+                        <h2 className="text-xl font-bold sm:text-3xl">Crypto Collection</h2>
 
                         <p className="mx-auto mt-4 max-w-md text-gray-400">
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Itaque praesentium cumque iure
-                            dicta incidunt est ipsam, officia dolor fugit natus?
+                            Pick your favourite Cryptocurrency and get it in your wallet after learning how to do it and the things behind the procedure here
                         </p>
 
                         <div className="relative w-full mt-4">
@@ -32,15 +31,11 @@ const MarketData = () => {
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                             />
-                            {/* <div className="absolute inset-y-0 left-0 flex items-center px-4">
-                                <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            </div> */}
+
                         </div>                    </header>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredCoins.map((coin) => (
-                            <div className="flex flex-col m-10 justify-center items-center bg-gray-800 rounded-lg shadow-lg p-4">
+                            <div className="flex flex-col m-10 justify-center items-center bg-gray-800 rounded-lg shadow-xl transition hover:border-pink-500/10 hover:shadow-blue-500/50 p-4">
                                 <img src={coin.image} className="h-[100px] w-[100px] rounded-t-md object-cover" alt={coin.name} />
                                 <h3 className="text-lg font-bold mt-2 text-white">{coin.name}</h3>
                                 <p className="text-gray-400">{coin.current_price} $</p>

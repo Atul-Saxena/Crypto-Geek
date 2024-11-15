@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from "axios";
 
-const CoinTextData = () => {
+const CoinTextData = ({ prices }) => {
 
     const { coinId } = useParams();
     const [response, setResponse] = useState([]);
+    const [coinChange, setcoinChange] = useState([]);
+    const [symbol, setsymbol] = useState([]);
     const [coinImg, setcoinImg] = useState([]);
     const [coinName, setcoinName] = useState([]);
     const [coinDescription, setcoinDescription] = useState([]);
@@ -22,28 +24,61 @@ const CoinTextData = () => {
         axios
             .request(options)
             .then(function (response) {
-                setResponse(response.data);
-                setcoinImg(response.data.image.large);
-                setcoinName(response.data.name);
-                setcoinDescription(response.data.description.en);
+                // console.log(response.data);
+                if (response.data) {
+                    setResponse(response.data);
+                    setsymbol(response.data.symbol);
+                    setcoinImg(response.data.image.large);
+                    setcoinName(response.data.name);
+                    setcoinDescription(response.data.description.en);
+                    setcoinChange(response.data.market_data.ath_change_percentage[symbol]);
+                }
             })
             .catch(function (error) {
                 console.error(error);
             });
 
-    }, [])
+    }, [coinId, symbol])
 
     return (
-        <div className=" items-center justify-center md:flex-row md:items-start md:justify-between md:space-x-6 md:space-y-0 space-y-6 md:p-6 p-4 shadow-lg">
-            <div className="flex items-center justify-center space-y-4">
-                <h1 className="text-3xl md:text-5xl font-bold ">{coinName}</h1>
-                <img src={coinImg} alt={coinName} className="w-[100px] md:w-[100px] h-[100px] rounded-lg ml-8" />
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-800 to-black p-6">
+          <div className="w-full max-w-xl bg-gray-900 rounded-lg shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-8 transform transition-all">
+            {/* Icon and Name */}
+            <div className="flex flex-col sm:flex-row items-center sm:space-x-4 mb-6 text-center sm:text-left">
+              <img src={coinImg} alt={coinName} className="w-16 h-16 rounded-full border border-gray-600 mb-4 sm:mb-0" />
+              <div>
+                <h2 className="text-3xl font-bold text-white">{coinName}</h2>
+                <p className="text-lg text-gray-400">{symbol}</p>
+              </div>
             </div>
-            <div className=" md:pl-6 xl:pl-12">
-                <p className="text-lg md:text-xl xl:text-2xl text-center">{coinDescription}</p>
+    
+            {/* Price and Change Percentage */}
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-4">
+              <div className="mb-4 sm:mb-0 text-center sm:text-left">
+                <p className="text-2xl font-semibold text-white">${prices.toLocaleString()}</p>
+                <p className={`text-lg font-medium ${coinChange >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                  {coinChange >= 0 ? '+' : ''}{coinChange}% (24h)
+                </p>
+              </div>
+              <span className="text-lg font-semibold text-gray-400">Rank #{response.market_cap_rank}</span>
             </div>
+    
+            {/* Description */}
+            <p className="text-gray-300 text-base mt-4 text-center sm:text-left">
+              {coinDescription}
+            </p>
+          </div>
         </div>
-    )
+      );
 }
 
 export default CoinTextData
+
+
+// src={coinImg} alt={coinName}
+// coinName
+// symbol
+// coinDescription
+// response.market_cap_rank
+// coinChange
+// prices
