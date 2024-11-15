@@ -12,16 +12,18 @@ import NotFound from './pages/NotFound'
 import CoinInfo from './pages/CoinInfo'
 import { BrowserRouter as Routers, Routes, Route } from 'react-router-dom'
 import { onAuthStateChanged } from "firebase/auth";
-import { FirebaseAuth } from './app/Firebase/FirebaseContext'
+import { FirebaseAuth,useFirebase } from './app/Firebase/FirebaseContext'
 
 function App() {
   const [users, setUser] = useState(null)
   const [verify, setverify] = useState(false)
+  const firebase = useFirebase();
 
   useEffect(() => {
     onAuthStateChanged(FirebaseAuth, (user) => {
       if(user){
         setUser(user);
+        firebase.setUserinfo(user);
         if(user.emailVerified){
           setverify(true)
         }

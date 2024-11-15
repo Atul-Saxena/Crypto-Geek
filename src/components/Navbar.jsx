@@ -27,12 +27,21 @@ const menuItems = [
 ]
 
 const Navbar = () => {
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isProfileOpen, setIsProfileOpen] = React.useState(false);
     const firebase = useFirebase();
+    const UserInfo = firebase.userInfo;
+    const UserPhoto = UserInfo.photoURL
+    console.log(UserPhoto);
+
 
     const handleLogout = () => {
         firebase.SignOut();
-      };
+    };
+
+    const toggleProfileMenu = () => {
+        setIsProfileOpen(!isProfileOpen);
+    };
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen)
@@ -57,6 +66,7 @@ const Navbar = () => {
                     </span>
                     <span className="font-bold">Crypto Geek</span>
                 </div>
+
                 <div className="hidden lg:block">
                     <ul className="inline-flex space-x-8">
                         {menuItems.map((item) => (
@@ -71,17 +81,107 @@ const Navbar = () => {
                         ))}
                     </ul>
                 </div>
+
                 <div className="hidden lg:block">
-                    <button
+
+                    <div className="relative inline-block text-left">
+                        <button
+                            onClick={toggleProfileMenu}
+                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                        >
+                            <span class="relative inline-block mr-2">
+                                <img src={UserPhoto} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
+
+                                <span className="absolute animate-pulse top-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+                            </span>
+                            <span className="mr-2">{UserInfo?.displayName}</span>
+                        </button>
+
+                        {isProfileOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                                <ul className="py-1">
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            onClick={handleLogout}
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* <button
                         type="button"
                         className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                         onClick={handleLogout}
                     >
                         Log Out
-                    </button>
+                    </button> */}
                 </div>
-                <div className="lg:hidden">
+                <div className="lg:hidden flex items-center ">
                     <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
+                    <div className="relative inline-block text-left">
+                        <button
+                            onClick={toggleProfileMenu}
+                            className="flex items-center px-4 py-2 text-sm font-medium outline-none"
+                        >
+
+                                <img src={UserPhoto} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
+
+                        </button>
+
+                        {isProfileOpen && (
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+                                <ul className="py-1">
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="#"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            onClick={handleLogout}
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+                    </div>
                 </div>
                 {isMenuOpen && (
                     <div className="absolute inset-x-0 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
@@ -105,6 +205,9 @@ const Navbar = () => {
                                         </span>
                                         <span className="font-bold">DevUI</span>
                                     </div>
+
+
+
                                     <div className="-mr-2">
                                         <button
                                             type="button"
@@ -131,15 +234,7 @@ const Navbar = () => {
                                         ))}
                                     </nav>
                                 </div>
-                                <Link to={'/'}>
-                                <button
-                                    type="button"
-                                    className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                                    onClick={handleLogout}
-                                >
-                                    Log Out
-                                </button>
-                                </Link>
+
                             </div>
                         </div>
                     </div>
