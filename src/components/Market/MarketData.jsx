@@ -35,7 +35,7 @@ const MarketData = () => {
                         </div>                    </header>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {filteredCoins.map((coin) => (
-                            <div className="flex flex-col m-10 justify-center items-center bg-gray-800 rounded-lg shadow-xl transition hover:border-pink-500/10 hover:shadow-blue-500/50 p-4">
+                            <div key={coin.id} className="flex flex-col m-10 justify-center items-center bg-gray-800 rounded-lg shadow-xl transition hover:border-pink-500/10 hover:shadow-blue-500/50 p-4">
                                 <img src={coin.image} className="h-[100px] w-[100px] rounded-t-md object-cover" alt={coin.name} />
                                 <h3 className="text-lg font-bold mt-2 text-white">{coin.name}</h3>
                                 <p className="text-gray-400">{coin.current_price} $</p>
