@@ -83,9 +83,15 @@ const Navbar = () => {
                     <div className="relative inline-block text-left">
                         <button
                             onClick={toggleProfileMenu}
+
                             className="flex items-center px-4 py-2 text-sm font-medium text-gray-100 bg-gray-800 rounded-md hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                         >
                             <span className="relative inline-block mr-2">
+
+                            className="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                        >
+                            <span class="relative inline-block mr-2">
+
                                 <img src={UserPhoto || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
 
                                 <span className="absolute animate-pulse top-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
@@ -94,12 +100,19 @@ const Navbar = () => {
                         </button>
 
                         {isProfileOpen && (
+
                             <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+
                                 <ul className="py-1">
                                     <li>
                                         <a
                                             href="#"
+
                                             className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700"
+                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
                                         >
                                             Profile
                                         </a>
@@ -107,7 +120,11 @@ const Navbar = () => {
                                     <li>
                                         <a
                                             href="#"
+
                                             className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700"
+
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
                                         >
                                             Settings
                                         </a>
@@ -116,7 +133,11 @@ const Navbar = () => {
                                         <button
                                             type="button"
                                             onClick={handleLogout}
+
                                             className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700"
+
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
                                         >
                                             Logout
                                         </button>
@@ -125,6 +146,7 @@ const Navbar = () => {
                             </div>
                         )}
                     </div>
+
                 </div>
                 <div className="lg:hidden flex items-center ">
                     <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer text-gray-100" />
@@ -132,6 +154,16 @@ const Navbar = () => {
                         <button
                             onClick={toggleProfileMenu}
                             className="flex items-center px-4 py-2 text-sm font-medium outline-none text-gray-100"
+
+
+                </div>
+                <div className="lg:hidden flex items-center ">
+                    <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
+                    <div className="relative inline-block text-left">
+                        <button
+                            onClick={toggleProfileMenu}
+                            className="flex items-center px-4 py-2 text-sm font-medium outline-none"
+
                         >
 
                                 <img src={UserPhoto || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png"} className="object-cover w-8 h-8 rounded-full" alt="User Avatar" />
@@ -139,12 +171,20 @@ const Navbar = () => {
                         </button>
 
                         {isProfileOpen && (
+
                             <div className="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-md shadow-lg">
+
+                            <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+
                                 <ul className="py-1">
                                     <li>
                                         <a
                                             href="#"
+
                                             className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700"
+
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
                                         >
                                             Profile
                                         </a>
@@ -152,7 +192,11 @@ const Navbar = () => {
                                     <li>
                                         <a
                                             href="#"
+
                                             className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700"
+
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
                                         >
                                             Settings
                                         </a>
@@ -161,7 +205,11 @@ const Navbar = () => {
                                         <button
                                             type="button"
                                             onClick={handleLogout}
+
                                             className="block px-4 py-2 text-sm text-gray-100 hover:bg-gray-700"
+
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+
                                         >
                                             Logout
                                         </button>
