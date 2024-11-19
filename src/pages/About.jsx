@@ -6,9 +6,7 @@ import Features from '../components/About/Features'
 const About = () => {
   return (
     <>
-      <Navbar/>
       <Features/>
-      <Footer/>
     </>
   )
 }

@@ -53,7 +53,6 @@ function App() {
       <Routers>
         <Routes>
           <Route path='/' element={verify?<Home/>:<EmailVerify/>} />
-          <Route path='/about' element={verify?<About/>:<EmailVerify/>} />
           <Route path='/market' element={verify?<Market/>:<EmailVerify/>} />
           <Route path='/market/:coinId' element={verify?<CoinInfo/>:<EmailVerify/>} />
           <Route path='/help&Support' element={verify?<HelpSupport/>:<EmailVerify/>} />
