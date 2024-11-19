@@ -1,4 +1,5 @@
 import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 import CoinTextData from '../components/Market/CoinTextData'
 import HistoricChart from '../components/Market/HistoricChart'
 import axios from "axios";
@@ -8,6 +9,7 @@ import { useParams } from 'react-router-dom';
 const CoinInfo = () => {
   const { coinId } = useParams();
   const [data, setdata] = useState([]);
+  const [price, setprice] = useState([]);
 
   useEffect(() => {
 
@@ -25,6 +27,7 @@ const CoinInfo = () => {
         //   y: price[1]
         // })));
         // console.log(response.data);
+        setprice(response.data.prices[0][1]);
         setdata(response.data);
       })
       .catch(function (error) {
@@ -40,7 +43,8 @@ const CoinInfo = () => {
     <div>
       <Navbar />
       {/* <HistoricChart data={data}/> */}
-      <CoinTextData/>
+      <CoinTextData prices={price}/>
+      <Footer />
     </div>
   )
 }

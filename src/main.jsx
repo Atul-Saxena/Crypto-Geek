@@ -5,9 +5,9 @@ import { FirbaseProvider } from './app/Firebase/FirebaseContext.jsx'
 import './index.css'
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
     <FirbaseProvider>
       <App />
     </FirbaseProvider>
-  </StrictMode>,
+  // </StrictMode>,
 )

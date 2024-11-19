@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
@@ -12,14 +12,24 @@ import {
     sendPasswordResetEmail
 } from "firebase/auth"
 
+// const firebaseConfig = {
+//     apiKey: import.meta.env.VITE_apiKey,
+//     authDomain: import.meta.env.VITE_authDomain,
+//     projectId: import.meta.env.VITE_projectId,
+//     storageBucket: import.meta.env.VITE_storageBucket,
+//     messagingSenderId: import.meta.env.VITE_messagingSenderId,
+//     appId: import.meta.env.VITE_appId,
+//     measurementId: import.meta.env.VITE_measurementId
+//   };
+
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_apiKey,
-    authDomain: import.meta.env.VITE_authDomain,
-    projectId: import.meta.env.VITE_projectId,
-    storageBucket: import.meta.env.VITE_storageBucket,
-    messagingSenderId: import.meta.env.VITE_messagingSenderId,
-    appId: import.meta.env.VITE_appId,
-    measurementId: import.meta.env.VITE_measurementId
+    apiKey: "AIzaSyBOY6R8olUyRmaRReezeDqZ20gnoRArBZU",
+  authDomain: "cryptogeek-8c4c1.firebaseapp.com",
+  projectId: "cryptogeek-8c4c1",
+  storageBucket: "cryptogeek-8c4c1.firebasestorage.app",
+  messagingSenderId: "537697432113",
+  appId: "1:537697432113:web:492ab0f5ebe30db7a11b10",
+  measurementId: "G-KL9BZRL1HL"
   };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -32,6 +42,8 @@ const FirebaseContext = createContext(null);
 export const useFirebase = () => useContext(FirebaseContext);
 
 export const FirbaseProvider = (props) => {
+
+    const [userInfo, setUserinfo] = useState(null);
 
     const signinWithGoogle = () => {
         signInWithPopup(FirebaseAuth, provider).then((result) => {
@@ -51,6 +63,7 @@ export const FirbaseProvider = (props) => {
             const email = error.customData.email;
             // The AuthCredential type that was used.
             const credential = GoogleAuthProvider.credentialFromError(error);
+            console.log(credential)
             // ...
         });
     }
@@ -92,7 +105,7 @@ export const FirbaseProvider = (props) => {
           }
     }
 
-    return <FirebaseContext.Provider value={{ CreateUserWithEmailAndPassword, SignInWithEmailAndPassword, signinWithGoogle, SignOut, Verification, ResetPassword }}>
+    return <FirebaseContext.Provider value={{ CreateUserWithEmailAndPassword, SignInWithEmailAndPassword, signinWithGoogle, SignOut, Verification, ResetPassword, userInfo, setUserinfo }}>
         {props.children}
     </FirebaseContext.Provider>
 }

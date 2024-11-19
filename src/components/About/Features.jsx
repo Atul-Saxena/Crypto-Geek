@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Features = () => {
     return (
@@ -190,7 +191,9 @@ const Features = () => {
                         </p>
                     </a>
 
+                    <div></div>
                     
+                    <Link to={'/learn-crypto'} type="button" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-block mx-auto mb-2">Get Started With your Journey</Link>
                 </div>
             </div>
         </section>
